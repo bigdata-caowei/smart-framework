@@ -23,9 +23,6 @@ import java.util.Map;
 
 /**
  * 文件上传助手类
- *
- * @author huangyong
- * @since 1.0.0
  */
 public final class UploadHelper {
 

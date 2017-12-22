@@ -24,16 +24,13 @@ import java.util.Map;
 
 /**
  * 请求转发器
- *
- * @author huangyong
- * @since 1.0.0
  */
-@WebServlet(urlPatterns = "/*", loadOnStartup = 0)
+@WebServlet(urlPatterns = "/*", loadOnStartup = 0)//服务器启动是就会实例化该servlet,并拦截所有请求进行分发
 public class DispatcherServlet extends HttpServlet {
 
     @Override
-    public void init(ServletConfig servletConfig) throws ServletException {
-        HelperLoader.init();
+    public void init(ServletConfig servletConfig) throws ServletException {//仅在启动时实例化一次执行此方法
+        HelperLoader.init();//初始化各Helper类
 
         ServletContext servletContext = servletConfig.getServletContext();
 
@@ -43,10 +40,11 @@ public class DispatcherServlet extends HttpServlet {
     }
 
     private void registerServlet(ServletContext servletContext) {
+        //添加映射,让JspServlet映射所有 JSP 请求
         ServletRegistration jspServlet = servletContext.getServletRegistration("jsp");
         jspServlet.addMapping("/index.jsp");
         jspServlet.addMapping(ConfigHelper.getAppJspPath() + "*");
-
+        //添加映射,让DefaultServlet映射所有静态资源
         ServletRegistration defaultServlet = servletContext.getServletRegistration("default");
         defaultServlet.addMapping("/favicon.ico");
         defaultServlet.addMapping(ConfigHelper.getAppAssetPath() + "*");
@@ -56,13 +54,14 @@ public class DispatcherServlet extends HttpServlet {
     public void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletHelper.init(request, response);
         try {
-            String requestMethod = request.getMethod().toLowerCase();
-            String requestPath = request.getPathInfo();
-            Handler handler = ControllerHelper.getHandler(requestMethod, requestPath);
+            String requestMethod = request.getMethod().toLowerCase();//获得请求方法
+            String requestPath = request.getPathInfo();//获得请求路劲
+            Handler handler = ControllerHelper.getHandler(requestMethod, requestPath);//根据method和path获得相应handler
             if (handler != null) {
-                Class<?> controllerClass = handler.getControllerClass();
-                Object controllerBean = BeanHelper.getBean(controllerClass);
+                Class<?> controllerClass = handler.getControllerClass();//根据handler获得controller
+                Object controllerBean = BeanHelper.getBean(controllerClass);//获得controller实例
 
+                //封装请求参数
                 Param param;
                 if (UploadHelper.isMultipart(request)) {
                     param = UploadHelper.createParam(request);
@@ -71,7 +70,8 @@ public class DispatcherServlet extends HttpServlet {
                 }
 
                 Object result;
-                Method actionMethod = handler.getActionMethod();
+                Method actionMethod = handler.getActionMethod();//获得请求方法
+                //通过反射执行相应controller的相应method
                 if (param.isEmpty()) {
                     result = ReflectionUtil.invokeMethod(controllerBean, actionMethod);
                 } else {
@@ -79,9 +79,9 @@ public class DispatcherServlet extends HttpServlet {
                 }
 
                 if (result instanceof View) {
-                    handleViewResult((View) result, request, response);
+                    handleViewResult((View) result, request, response);//响应结果视图和数据
                 } else if (result instanceof Data) {
-                    handleDataResult((Data) result, response);
+                    handleDataResult((Data) result, response);//响应son
                 }
             }
         } finally {

@@ -5,9 +5,6 @@ import org.smart4j.framework.util.ClassUtil;
 
 /**
  * 加载相应的 Helper 类
- *
- * @author huangyong
- * @since 1.0.0
  */
 public final class HelperLoader {
 

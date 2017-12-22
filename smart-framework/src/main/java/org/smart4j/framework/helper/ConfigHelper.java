@@ -7,9 +7,6 @@ import java.util.Properties;
 
 /**
  * 属性文件助手类
- *
- * @author huangyong
- * @since 1.0.0
  */
 public final class ConfigHelper {
 

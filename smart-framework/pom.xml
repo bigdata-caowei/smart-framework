@@ -6,7 +6,6 @@
   <artifactId>smart-framework</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
-
   <name>smart-framework</name>
   <url>http://maven.apache.org</url>
 

@@ -10,9 +10,6 @@ import java.io.OutputStream;
 
 /**
  * 流操作工具类
- *
- * @author huangyong
- * @since 1.0.0
  */
 public final class StreamUtil {
 

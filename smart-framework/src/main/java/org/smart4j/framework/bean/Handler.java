@@ -4,9 +4,6 @@ import java.lang.reflect.Method;
 
 /**
  * 封装 Action 信息
- *
- * @author huangyong
- * @since 1.0.0
  */
 public class Handler {
 

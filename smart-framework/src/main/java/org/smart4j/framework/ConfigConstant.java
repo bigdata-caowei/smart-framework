@@ -2,9 +2,6 @@ package org.smart4j.framework;
 
 /**
  * 提供相关配置项常量
- *
- * @author huangyong
- * @since 1.0.0
  */
 public interface ConfigConstant {
 

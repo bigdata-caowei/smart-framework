@@ -10,9 +10,6 @@ import java.util.Set;
 
 /**
  * 类操作助手类
- *
- * @author huangyong
- * @since 1.0.0
  */
 public final class ClassHelper {
 

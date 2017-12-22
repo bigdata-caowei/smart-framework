@@ -18,9 +18,6 @@ import java.util.*;
 
 /**
  * 数据库操作助手类
- *
- * @author huangyong
- * @since 1.0.0
  */
 public final class DatabaseHelper {
 

@@ -15,9 +15,6 @@ import java.util.List;
 
 /**
  * 请求助手类
- *
- * @author huangyong
- * @since 1.0.0
  */
 public final class RequestHelper {
 

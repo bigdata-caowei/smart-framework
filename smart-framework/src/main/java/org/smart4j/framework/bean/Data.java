@@ -2,9 +2,6 @@ package org.smart4j.framework.bean;
 
 /**
  * 返回数据对象
- *
- * @author huangyong
- * @since 1.0.0
  */
 public class Data {
 

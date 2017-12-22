@@ -8,9 +8,6 @@ import java.util.List;
 
 /**
  * 代理链
- *
- * @author huangyong
- * @since 1.0.0
  */
 public class ProxyChain {
 
@@ -49,7 +46,7 @@ public class ProxyChain {
         if (proxyIndex < proxyList.size()) {
             methodResult = proxyList.get(proxyIndex++).doProxy(this);
         } else {
-            methodResult = methodProxy.invokeSuper(targetObject, methodParams);
+            methodResult = methodProxy.invokeSuper(targetObject, methodParams);//执行相应目标的类的业务方法
         }
         return methodResult;
     }

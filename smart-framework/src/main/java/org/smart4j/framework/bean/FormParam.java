@@ -2,9 +2,6 @@ package org.smart4j.framework.bean;
 
 /**
  * 封装表单参数
- *
- * @author huangyong
- * @since 1.0.0
  */
 public class FormParam {
 

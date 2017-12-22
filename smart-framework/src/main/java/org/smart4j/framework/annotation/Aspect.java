@@ -4,9 +4,6 @@ import java.lang.annotation.*;
 
 /**
  * 切面注解
- *
- * @author huangyong
- * @since 1.0.0
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
